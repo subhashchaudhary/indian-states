@@ -19,28 +19,10 @@ and open the template in the editor.
         </select>
         <select id="city">
         </select>
-        <textarea id="locations"></textarea>
-        <input type="text" id="varname" placeholder="variable name"/>
-        <input type="button" id="click" value="click me">
-        <br/>
-        <br/>
-        <pre id="output">
-        </pre>
+ 
         <script>
             $('#states').pwn_states({
                 city: $('#city')
-            });
-            $('#click').click(function() {
-                var value = $('#locations').val();
-                var example = value.split('\n');
-                var states = $('#varname').val();
-                var data = "var " + states + " = '';<br/>";
-
-                $.each(example, function(key, val) {
-                    val = val.replace('/\n/', '');
-                    data = data + states + "=" + states + "+'&lt;option value=\"" + val + "\"&gt;" + val + "&lt;/option&gt;';<br/>";
-                });
-                $('#output').html(data);
             });
         </script>
     </body>
