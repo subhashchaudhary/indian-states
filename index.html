@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="countries.js"></script>
+    </head>
+    <body>
+        <div>jQuery Pwn India States</div>
+        <select id="states">
+
+        </select>
+        <select id="city">
+        </select>
+        <textarea id="locations"></textarea>
+        <input type="text" id="varname" placeholder="variable name"/>
+        <input type="button" id="click" value="click me">
+        <br/>
+        <br/>
+        <pre id="output">
+        </pre>
+        <script>
+            $('#states').pwn_states({
+                city: $('#city')
+            });
+            $('#click').click(function() {
+                var value = $('#locations').val();
+                var example = value.split('\n');
+                var states = $('#varname').val();
+                var data = "var " + states + " = '';<br/>";
+
+                $.each(example, function(key, val) {
+                    val = val.replace('/\n/', '');
+                    data = data + states + "=" + states + "+'&lt;option value=\"" + val + "\"&gt;" + val + "&lt;/option&gt;';<br/>";
+                });
+                $('#output').html(data);
+            });
+        </script>
+    </body>
+</html>
